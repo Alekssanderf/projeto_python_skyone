@@ -3,6 +3,9 @@ class Pessoa:
         self.nome = nome
         self.fone = fone
 
+    def exibir(self):
+        print(f'-> {self.nome} - {self.fone}')
+
 
 class Squad:
     def __init__(self, nome, techlead=None, devs=None):
@@ -30,6 +33,10 @@ class Dev(Colaborador):
     def __init__(self, nome, fone, cargo, squad=None):
         super().__init__(nome, fone, squad)
         self.cargo = cargo
+
+    def exibir(self):
+        super().exibir()
+        print(f'   Cargo de {self.cargo} na squad {self.squad.nome}\n')
 
 
 while True:
@@ -59,3 +66,11 @@ while True:
     option = input('\nDeseja adicionar mais um squad? [S/N]: ')
     if option in 'Nn':
         break
+
+for squad in squads:
+    print(f'\n------------------------------{squad.nome}------------------------------')
+    print(f'Techlead: {squad.techlead.nome}')
+    print('\n-----Devs do squad-----')
+    for dev in squad.devs:
+        dev.exibir()
+    print(f'------------------------------{squad.nome}------------------------------')
